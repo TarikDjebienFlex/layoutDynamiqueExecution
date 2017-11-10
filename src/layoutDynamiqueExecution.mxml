@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.formats.VerticalAlign;
+			
+			import org.osmf.layout.LayoutAttributesFacet;
+			
+			import spark.layouts.TileLayout;
+			import spark.layouts.VerticalLayout;
+			import spark.layouts.supportClasses.LayoutBase;
+			
+			[Bindable] private var _vertical:LayoutBase = new VerticalLayout();
+			[Bindable] private var _mosaic:LayoutBase = new TileLayout();
+			[Bindable] private var _current:LayoutBase = _vertical;
+			
+
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				_current = _mosaic;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:ArrayCollection id="bookCollec" >
+			<fx:Object title="La théorie des cordes" />
+			<fx:Object title="L'univers élégant" />
+			<fx:Object title="Le facteur temps" />
+			<fx:Object title="Les trous noirs" />
+		</s:ArrayCollection>
+	</fx:Declarations>
+	
+	
+	
+	<s:List id="maListe" verticalCenter="0" horizontalCenter="0" dataProvider="{ bookCollec }"
+			labelField="title" layout="{ _current }" width="50%" height="50%"
+			>
+	</s:List>
+	
+	<s:Button label="Changer le layout" click="button1_clickHandler(event)" />
+	
+	
+	
+</s:Application>
